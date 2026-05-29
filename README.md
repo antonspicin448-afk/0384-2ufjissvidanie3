@@ -1,2 +1,516 @@
-# 0384-2ufjissvidanie3
-ну эт самое го на свидание 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>💛 Летнее приглашение</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(160deg, #fef9f3 0%, #fce8dc 30%, #fadfcb 70%, #f9e5d8 100%);
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 15%, rgba(255,240,225,0.6) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(245,215,190,0.4) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(250,235,215,0.3) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .invitation-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 250, 244, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 36px;
+      padding: 32px 24px 28px;
+      box-shadow: 
+        0 25px 45px rgba(160, 120, 80, 0.15),
+        0 8px 20px rgba(140, 100, 60, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+      border: 1px solid rgba(200, 165, 120, 0.3);
+      text-align: center;
+      color: #4a3828;
+      max-height: 90vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin: 0 0 28px;
+      color: #5c422c;
+      text-shadow: 1px 1px 0 rgba(255,240,225,0.8);
+      font-style: italic;
+      line-height: 1.3;
+      padding: 0 5px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a47a, #b68b5a, #c9a47a, transparent);
+    }
+
+    .buttons-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      position: relative;
+      min-height: 70px;
+    }
+
+    .btn {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      padding: 14px 36px;
+      border-radius: 50px;
+      background: rgba(255, 248, 240, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1.5px solid rgba(180, 130, 80, 0.5);
+      box-shadow: 0 6px 16px rgba(150, 110, 70, 0.15);
+      color: #4d3824;
+      text-transform: uppercase;
+      position: relative;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+      background: rgba(240, 225, 205, 0.85);
+    }
+
+    #noButton {
+      background: rgba(250, 240, 230, 0.7);
+      border-color: #d8b08a;
+      color: #5c4330;
+      z-index: 100;
+      transition: all 0.06s linear;
+      will-change: transform, left, top;
+    }
+
+    #yesButton {
+      background: rgba(245, 225, 200, 0.75);
+      border-color: #c9a87c;
+      color: #3e2e20;
+      font-weight: 600;
+    }
+
+    .plan-section {
+      margin-top: 24px;
+      text-align: left;
+      background: rgba(250, 244, 235, 0.75);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 24px 18px;
+      border: 1px solid rgba(200, 160, 110, 0.4);
+      box-shadow: inset 0 0 25px rgba(255,250,240,0.8), 0 8px 18px rgba(140,100,60,0.12);
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .plan-title {
+      font-size: 26px;
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #5b422c;
+      border-left: 4px solid #c8a27a;
+      padding-left: 14px;
+      font-weight: 400;
+    }
+
+    .plan-list {
+      list-style: none;
+      counter-reset: step;
+      margin-bottom: 24px;
+      padding: 0;
+    }
+
+    .plan-list li {
+      counter-increment: step;
+      font-size: 20px;
+      padding: 12px 0 12px 44px;
+      position: relative;
+      border-bottom: 1px dashed rgba(180, 140, 100, 0.35);
+      color: #4f3a28;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+    }
+
+    .plan-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 32px;
+      height: 32px;
+      background: #f3dbc2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a3320;
+      border: 1px solid #c8a27a;
+      box-shadow: 0 2px 6px rgba(150,100,50,0.2);
+    }
+
+    .date-input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .date-label {
+      font-size: 18px;
+      color: #5e432b;
+      letter-spacing: 0.5px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .date-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    #dateInput {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 30px;
+      border: 1px solid #cfb595;
+      background: rgba(255, 250, 240, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      color: #4e3a28;
+      outline: none;
+      -webkit-appearance: none;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    #dateInput:focus {
+      border-color: #b48b5a;
+      box-shadow: 0 0 0 3px rgba(200, 150, 100, 0.2);
+    }
+
+    #continueButton {
+      display: none;
+      font-size: 22px;
+      padding: 14px 32px;
+      background: rgba(225, 200, 165, 0.75);
+      border: 1px solid #b39264;
+      width: 100%;
+      text-align: center;
+    }
+
+    .final-message {
+      margin-top: 20px;
+      font-size: 26px;
+      font-style: italic;
+      color: #5a3f28;
+      background: rgba(235, 215, 190, 0.55);
+      border-radius: 24px;
+      padding: 16px;
+      display: none;
+      animation: gentleFade 0.8s ease;
+      text-align: center;
+    }
+
+    @keyframes gentleFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Стили для скроллбара на телефоне */
+    .invitation-card::-webkit-scrollbar {
+      width: 3px;
+    }
+    .invitation-card::-webkit-scrollbar-thumb {
+      background: #c9a47a;
+      border-radius: 10px;
+    }
+
+    /* Для очень маленьких экранов */
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 30px;
+      }
+      .btn {
+        font-size: 20px;
+        padding: 12px 28px;
+      }
+      .plan-list li {
+        font-size: 17px;
+        padding-left: 40px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .date-row {
+        flex-direction: row;
+      }
+      #continueButton {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invitation-card" id="card">
+    <h1>Пойдём на свидание?</h1>
+
+    <div class="buttons-row">
+      <button class="btn" id="yesButton">Да</button>
+      <button class="btn" id="noButton">Нет</button>
+    </div>
+
+    <div id="planContainer" class="plan-section hidden">
+      <div class="plan-title">✨ План нашего дня</div>
+      <ol class="plan-list">
+        <li>Обняться — крепко и нежно</li>
+        <li>Купить онигири с разными начинками</li>
+        <li>Сходить побрызгаться водой</li>
+      </ol>
+
+      <div class="date-input-area">
+        <label class="date-label" for="dateInput">Когда осуществим?</label>
+        <div class="date-row">
+          <input type="date" id="dateInput">
+          <button class="btn" id="continueButton">Продолжить</button>
+        </div>
+      </div>
+
+      <div id="finalMessage" class="final-message">
+        Очень жду этого дня 💛
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const yesButton = document.getElementById('yesButton');
+      const noButton = document.getElementById('noButton');
+      const planContainer = document.getElementById('planContainer');
+      const dateInput = document.getElementById('dateInput');
+      const continueButton = document.getElementById('continueButton');
+      const finalMessage = document.getElementById('finalMessage');
+      const card = document.getElementById('card');
+
+      let planVisible = false;
+
+      // Функция для перемещения кнопки "Нет"
+      function moveNoButton(clientX, clientY) {
+        if (!noButton || planVisible) return;
+        
+        const btnRect = noButton.getBoundingClientRect();
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+
+        const deltaX = clientX - btnCenterX;
+        const deltaY = clientY - btnCenterY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        const escapeThreshold = 130;
+        if (distance < escapeThreshold) {
+          const angle = Math.atan2(deltaY, deltaX);
+          const moveDistance = 100;
+          let moveX = -Math.cos(angle) * moveDistance;
+          let moveY = -Math.sin(angle) * moveDistance;
+
+          const currentLeft = parseFloat(noButton.style.left) || 0;
+          const currentTop = parseFloat(noButton.style.top) || 0;
+
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          
+          let newLeft = currentLeft + moveX;
+          let newTop = currentTop + moveY;
+
+          const padding = 20;
+          const predictedRect = {
+            left: btnRect.left + moveX,
+            right: btnRect.right + moveX,
+            top: btnRect.top + moveY,
+            bottom: btnRect.bottom + moveY
+          };
+
+          if (predictedRect.left < padding) newLeft = currentLeft + (padding - btnRect.left);
+          if (predictedRect.right > viewportWidth - padding) newLeft = currentLeft + (viewportWidth - padding - btnRect.right);
+          if (predictedRect.top < padding) newTop = currentTop + (padding - btnRect.top);
+          if (predictedRect.bottom > viewportHeight - padding) newTop = currentTop + (viewportHeight - padding - btnRect.bottom);
+
+          noButton.style.left = newLeft + 'px';
+          noButton.style.top = newTop + 'px';
+        }
+      }
+
+      // Отслеживание касаний для телефона
+      document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const touch = e.touches[0];
+          moveNoButton(touch.clientX, touch.clientY);
+        }
+      }, { passive: true });
+
+      document.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          const touch = e.touches[0];
+          moveNoButton(touch.clientX, touch.clientY);
+        }
+      }, { passive: true });
+
+      // Для десктопа
+      document.addEventListener('mousemove', (e) => {
+        moveNoButton(e.clientX, e.clientY);
+      });
+
+      // Клик по кнопке "Нет"
+      noButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const randomAngle = Math.random() * Math.PI * 2;
+        const jump = 120;
+        const currentLeft = parseFloat(noButton.style.left) || 0;
+        const currentTop = parseFloat(noButton.style.top) || 0;
+        
+        noButton.style.left = (currentLeft + Math.cos(randomAngle) * jump) + 'px';
+        noButton.style.top = (currentTop + Math.sin(randomAngle) * jump) + 'px';
+        
+        // Виброотклик на телефоне (если поддерживается)
+        if (window.navigator && window.navigator.vibrate) {
+          window.navigator.vibrate(30);
+        }
+      });
+
+      // Кнопка "Да"
+      yesButton.addEventListener('click', () => {
+        planContainer.classList.remove('hidden');
+        planVisible = true;
+        noButton.style.display = 'none';
+        
+        setTimeout(() => {
+          planContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        if (window.navigator && window.navigator.vibrate) {
+          window.navigator.vibrate([50, 50, 50]);
+        }
+      });
+
+      // Логика даты
+      dateInput.addEventListener('input', function() {
+        if (dateInput.value) {
+          continueButton.style.display = 'block';
+        } else {
+          continueButton.style.display = 'none';
+          finalMessage.style.display = 'none';
+        }
+      });
+
+      dateInput.addEventListener('change', function() {
+        if (dateInput.value) {
+          continueButton.style.display = 'block';
+        }
+      });
+
+      continueButton.addEventListener('click', function() {
+        if (dateInput.value) {
+          finalMessage.style.display = 'block';
+          finalMessage.style.animation = 'none';
+          finalMessage.offsetHeight;
+          finalMessage.style.animation = 'gentleFade 0.8s ease';
+          
+          if (window.navigator && window.navigator.vibrate) {
+            window.navigator.vibrate([100, 50, 100, 50, 200]);
+          }
+          
+          setTimeout(() => {
+            finalMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        }
+      });
+
+      // Инициализация
+      noButton.style.left = '0px';
+      noButton.style.top = '0px';
+
+      // Предотвращение нежелательного скролла при касании кнопок
+      document.addEventListener('touchmove', function(e) {
+        if (e.target.tagName === 'BUTTON') {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+    })();
+  </script>
+</body>
+</html>
